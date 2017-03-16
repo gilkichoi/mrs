@@ -1,17 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Service_model extends CI_Model {
+class Payment_model extends CI_Model {
 
         public function __construct()
         {
                 parent::__construct();
                 
         }
-    
-    public function get_services()
-    {
-    	$query=$this->db->get('service');
-    	return $query;
-    }
     public function insert()
  	{
  		$this->load->helper('url');
@@ -22,19 +16,22 @@ class Service_model extends CI_Model {
  			'service_cost' => $this->input->post('service_cost'),
  			 );
 
- 		return $this->db->insert('service', $data);
+ 		return $this->db->insert('transaction', $data);
  	}
-    public function show_service()
-    {
-        $query = $this->db->get('service');
-        $query_result = $query->result();
-        return $query_result;
-    }
-    function show_service_id($data)
+    public function show($data)
     {
         $this->db->select('*');
-        $this->db->from('service');
-        $this->db->where('service_id', $data);
+        $this->db->from('patient');
+        $this->db->where('file_no', $data);
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
+    function show_id($data)
+    {
+        $this->db->select('*');
+        $this->db->from('patient_bill');
+        $this->db->where('transaction_id', $data);
         $query = $this->db->get();
         $result = $query->result();
         return $result;

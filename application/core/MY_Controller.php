@@ -13,7 +13,10 @@ class MY_Controller extends CI_Controller {
 
             $this->load->model('corporate_model');
             $this->load->model('vitals');
-            // $this->load->model('appointment');
+            $this->load->model('expense_model');
+            $this->load->model('patient_model');
+            $this->load->model('appointment_model');
+            $this->load->model('payment_model');
  }
 
     public function _render_page($view, $data=null, $returnhtml=false)//I think this makes more sense
